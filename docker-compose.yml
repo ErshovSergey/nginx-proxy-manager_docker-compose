@@ -5,19 +5,22 @@ services:
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
-# 10.20.0.252/24
-      - '10.20.0.252:80:80/tcp'
-      - '10.20.0.252:443:443/tcp'
+
+# Internal
 # 10.10.2.252/24
-      - '10.10.2.252:80:80/tcp'
-      - '10.10.2.252:443:443/tcp'
-      - '10.10.2.252:81:81/tcp'
+      - ${Inetrnal_IP}:80:80/tcp
+      - ${Inetrnal_IP}:443:443/tcp
+      - ${Inetrnal_IP}:${Inetrnal_management_PORT}:81/tcp
+
+# External
+#10.20.0.252/24
+      - ${External_IP}:80:80/tcp
+      - ${External_IP}:443:443/tcp
 
     volumes:
       - "/etc/timezone:/etc/timezone:ro"
       - ${DATA_PATH}/data:/data
       - ${DATA_PATH}/letsencrypt:/etc/letsencrypt
-      - ${DATA_PATH}/letsencrypt.ini:/etc/letsencrypt.ini
 
     environment:
       DISABLE_IPV6: 'true'
