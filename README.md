@@ -10,3 +10,8 @@ _Another instance of Certbot is already running_
 ```docker exec -it container_name  /bin/bash```  
 ```ps -ef | grep certb```  
 ```kill <process id from prev. command>```  
+
+### Увеличение количества worker_connections  
+Создать файл _/data/nginx/custom/events.conf_.  
+со строкой  
+```worker_connections 10240;```
