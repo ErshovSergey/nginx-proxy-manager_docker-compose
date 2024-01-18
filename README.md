@@ -10,6 +10,10 @@ _Another instance of Certbot is already running_
 ```docker exec -it container_name  /bin/bash```  
 ```ps -ef | grep certb```  
 ```kill <process id from prev. command>```  
+В очередной версии удалили ps, поэтому необходимо сначала установить в контейнере  
+```apt update && apt install -y procps```  
+
+
 
 ### Появляется ошибка "500 Internal Server Error"  до полной неработоспособности
 Возможная причина недостаточное количество connection.  
